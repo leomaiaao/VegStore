@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "firstName": "Shait",
+      "email": "juniorshait@gmail.com",
+      "mobileNumber": "319999999",
+      "salary": "4500"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
