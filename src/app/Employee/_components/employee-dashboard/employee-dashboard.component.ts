@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeModel } from './employee-dash-board.model';
-import { ApiService } from 'src/app/_services/api.service';
-
+import { ApiService } from '../../_services/api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
@@ -17,7 +17,8 @@ export class EmployeeDashboardComponent implements OnInit {
   showUpdate! : boolean;
 
   constructor(private formbuilder: FormBuilder,
-    private api: ApiService) { }
+    private api: ApiService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.formValue = this.formbuilder.group({
@@ -100,5 +101,10 @@ export class EmployeeDashboardComponent implements OnInit {
         this.getAllEmployee();
       }
     })
+  }
+  clickToGoOut(){
+    this.router.navigate(['login']);
+    // salvar/remover o usuário com setItem/removeItem do localstorage;
+    //limitar acesso com um usuário logado;
   }
 }
