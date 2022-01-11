@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
             alert("Login Sucess");
             this.loginForm.reset();
             this.router.navigate(['Employee']);
+            localStorage.setItem(user, JSON.stringify(user));
           } else {
             alert('User not found');
           }

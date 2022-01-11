@@ -104,6 +104,7 @@ export class EmployeeDashboardComponent implements OnInit {
   }
   clickToGoOut(){
     this.router.navigate(['login']);
+    localStorage.clear();
     // salvar/remover o usuário com setItem/removeItem do localstorage;
     //limitar acesso com um usuário logado;
   }

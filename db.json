@@ -1,6 +1,14 @@
 {
   "posts": [],
-  "signupusers": [],
+  "signupusers": [
+    {
+      "name": "oi",
+      "email": "oi@oi",
+      "password": "3333",
+      "mobileNumber": 444,
+      "id": 1
+    }
+  ],
   "profile": {
     "name": "typicode"
   }
