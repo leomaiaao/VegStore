@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmployeeDashboardComponent } from '../_components/employee-dashboard/employee-dashboard.component';
+import { FruitDashboardComponent } from '../_components/employee-dashboard/fruit-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    EmployeeDashboardComponent
+    FruitDashboardComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ],
   exports: [
-    EmployeeDashboardComponent
+    FruitDashboardComponent
   ]
 })
-export class EmployeeModule { }
+export class FruitModule { }

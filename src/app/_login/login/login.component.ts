@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,26 +13,28 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  private user = new Observable<any>();  
+
+  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router, private loginservice: LoginService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
-      email: [''],
-      password: ['']
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
   login() {
     this.http.get<any>("http://localhost:3000/signupusers")
       .subscribe({
         next: (result: any) => {
-          const user = result.find((a: any) => {
+          this.user = result.find((a: any) => {
             return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
           });
-          if (user) {
+          if (this.user) {
             alert("Login Sucess");
+            sessionStorage.setItem('usuário', JSON.stringify(this.user));
             this.loginForm.reset();
-            this.router.navigate(['Employee']);
-            localStorage.setItem(user, JSON.stringify(user));
+            this.router.navigate(['fruit']);
           } else {
             alert('User not found');
           }

@@ -12,20 +12,28 @@
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input formControlName='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required','email')">Email is required</span>
+
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input formControlName='password' type="password" class="form-control" id="exampleInputPassword1">
+                        <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')">Password is required</span>
+
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Name</label>
                         <input formControlName='name' type="text" class="form-control" id="exampleInputPassword1">
+                        <span class="text-danger" *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required','name')">Name is required</span>
+
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
                         <input formControlName='mobileNumber' type="number" class="form-control" id="exampleInputPassword1">
+                        <span class="text-danger" *ngIf="signupForm.controls['mobileNumber'].dirty && signupForm.hasError('required','mobileNumber')">Mobile Number is required</span>
+
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button [disabled]="!signupForm.valid" type="submit" class="btn btn-primary">Sign Up</button>
                 </form>
                 <a style="color: #fff; margin-top: 10px;" routerLink="/login">Alredy a user? Enter Here</a>
             </div>
