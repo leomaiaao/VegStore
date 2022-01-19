@@ -19,9 +19,8 @@ export class ProductComponent implements OnInit {
       this.productList = res;
       this.filterCategory = res;
       this.productList.forEach((a:any) => {
-        Object.assign(a,{number:1,total:Number(a.prize) });
+        Object.assign(a,{numbers:1,total:Number(a.prize) });
       });
-      console.log(this.productList)
     });
   }
   addtocart(item: any){
