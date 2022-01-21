@@ -10,6 +10,9 @@ import { SignupComponent } from './_signup/signup/signup.component';
 import { HeaderComponent } from './component/header/header.component';
 import { CartComponent } from './component/cart/cart.component';
 import { ProductComponent } from './component/product/product.component';
+import { FilterPipe } from './filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { MiddleComponent } from './component/middle/middle.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +21,18 @@ import { ProductComponent } from './component/product/product.component';
     SignupComponent,
     HeaderComponent,
     CartComponent,
-    ProductComponent
+    ProductComponent,
+    FilterPipe,
+    MiddleComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FruitModule
+    FruitModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

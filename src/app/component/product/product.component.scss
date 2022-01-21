@@ -17,6 +17,7 @@
 
 .item {
     margin: 10px 15px;
+    margin-top: 90px;
     text-align: center;
 }
 
@@ -39,4 +40,5 @@
 .card img:hover {
     transition: 0.3s ease-in-out;
     transform: scale(1.1);
+    cursor: pointer;
 }

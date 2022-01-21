@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/cart.service';
+import { browserRefresh } from 'src/app/app.component';
+
+
 
 @Component({
   selector: 'app-cart',
@@ -8,22 +11,47 @@ import { CartService } from 'src/app/service/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  public products : any = [];
+  public products: any = [];
   public grandTotal !: number;
-  constructor(private cartService : CartService) { }
+  public browserRefresh!: boolean;
+
+  constructor(private cartService: CartService) { }
+
 
   ngOnInit(): void {
+    this.browserRefresh = browserRefresh;
+
     this.cartService.getProducts()
-    .subscribe(res=>{
-      this.products = res;
-      this.grandTotal = this.cartService.getTotalPrice();
-    })
+      .subscribe(res => {
+        this.products = res;
+        this.grandTotal = this.cartService.getTotalPrice();
+      })
+      
+    if (browserRefresh === true) {
+      if (localStorage.getItem('CartItems')) {
+        this.cartService.initCartItemList(JSON.parse(localStorage.getItem("CartItems") || ""));
+        this.grandTotal = this.cartService.getTotalPrice();            
+      }
+    }
   }
-  removeItem(item: any){
+ 
+  removeItem(item: any) {
     this.cartService.removeCartItem(item);
-  }
-  emptycart(){
-    this.cartService.removeAllCart();
+    this.cartService.saveTheCart();
   }
 
+  removeOneItem(item: any) {
+    this.cartService.removeOneItem(item);
+    this.cartService.saveTheCart();
+  }
+
+  addCartItem(item: any) {
+    this.cartService.addtoCartItem(item);
+    this.cartService.saveTheCart();
+  }
+  
+  emptycart() {
+    this.cartService.removeAllCart();
+    localStorage.removeItem('CartItems');
+  }
 }

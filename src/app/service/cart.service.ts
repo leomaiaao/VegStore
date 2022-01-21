@@ -8,6 +8,7 @@ export class CartService {
 
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
+  public search = new BehaviorSubject<string>("");
 
   constructor() { }
   getProducts() {
@@ -30,6 +31,13 @@ export class CartService {
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
   }
+  saveTheCart(){
+    localStorage.setItem('CartItems', JSON.stringify(this.cartItemList));
+    }
+  initCartItemList(list: any[]){
+    this.cartItemList = list;
+    this.productList.next(this.cartItemList);
+  }
 
   getTotalPrice(): number {
     let grandTotal = 0;
@@ -46,6 +54,29 @@ export class CartService {
       }
     })
     this.productList.next(this.cartItemList);
+  }
+  removeOneItem(product: any){
+    let i = this.cartItemList.findIndex((el: any) => el.id === product.id);
+    if (i !== -1) {
+      this.cartItemList[i].numbers -= 1;
+      this.cartItemList[i].total = this.cartItemList[i].numbers * this.cartItemList[i].prize;
+      if(this.cartItemList[i].numbers === 0){
+        this.removeCartItem(product);
+      }
+    }
+    this.productList.next(this.cartItemList);
+    this.getTotalPrice();
+
+  }
+  addtoCartItem(product: any) {
+    let i = this.cartItemList.findIndex((el: any) => el.id === product.id);
+    if (i !== -1) {
+      this.cartItemList[i].numbers += 1;
+      this.cartItemList[i].total = this.cartItemList[i].numbers * this.cartItemList[i].prize;
+    }
+    this.productList.next(this.cartItemList);
+    this.getTotalPrice();
+
   }
   removeAllCart() {
     this.cartItemList = []

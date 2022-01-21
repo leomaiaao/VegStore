@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
             alert("Login Sucess");
             sessionStorage.setItem('usuário', JSON.stringify(this.user));
             this.loginForm.reset();
-            this.router.navigate(['fruit']);
+            this.router.navigate(['middle']);
           } else {
             alert('User not found');
           }

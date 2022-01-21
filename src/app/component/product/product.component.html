@@ -3,25 +3,25 @@
 <div class="card-top container-fluid">
     <div class="container d-flex">
         <div class="item">
-            <a>
+            <a (click)="filter('')">
                 <img src="https://tropicalestufas.com.br/wp-content/uploads/2020/06/frutas-legumes-e-hortalic3a7as-2.jpg" alt="">
                 <h6>All products</h6>
             </a>
         </div>
         <div class="item">
-            <a>
+            <a (click)="filter('Fruta')">
                 <img src="https://www.rbsdirect.com.br/imagesrc/25370856.jpg?w=1400" alt="">
                 <h6>Frutas</h6>
             </a>
         </div>
         <div class="item">
-            <a>
+            <a (click)="filter ('Vegetal')">
                 <img src="https://ogimg.infoglobo.com.br/in/25176696-7de-3e9/FT1086A/frutasevegetais.jpg" alt="">
                 <h6>Vegetais</h6>
             </a>
         </div>
         <div class="item">
-            <a>
+            <a (click)="filter ('Folhosas')">
                 <img src="https://gooutside.com.br/wp-content/uploads/sites/3/2020/03/melhores-tipos-de-verduras.jpg" alt="">
                 <h6>Folhosas</h6>
             </a>
@@ -30,10 +30,10 @@
 </div>
 <div class="container">
     <div class="row">
-        <ng-container *ngFor="let item of productList">
+        <ng-container *ngFor="let item of filterCategory | filter:searchKey:'itemName'">
             <div class="card col-md-3 align-items-center">
 
-                <img src="{{item.image}}" alt="">
+                <img src="{{item.image}}" alt="" (click)="addtocart(item)">
                 <h5>Produto: {{item.itemName}}</h5>
                 <p>Tipo: {{item.type}}</p>
                 <p>Quantidade no Estoque: {{item.quantity}}</p>
