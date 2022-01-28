@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/cart.service';
 import { browserRefresh } from 'src/app/app.component';
+import { ApiService } from 'src/app/Employee/_services/api.service';
+import { jsPDF } from "jspdf";
+import { ElementRef, ViewChild } from '@angular/core';
 
 
 
@@ -14,8 +17,9 @@ export class CartComponent implements OnInit {
   public products: any = [];
   public grandTotal !: number;
   public browserRefresh!: boolean;
+  @ViewChild('conteudo', {static: false}) el!: ElementRef;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private apiService: ApiService) { }
 
 
   ngOnInit(): void {
@@ -49,9 +53,24 @@ export class CartComponent implements OnInit {
     this.cartService.addtoCartItem(item);
     this.cartService.saveTheCart();
   }
-  
+
   emptycart() {
     this.cartService.removeAllCart();
     localStorage.removeItem('CartItems');
+  }
+   
+  sucessButton(){
+    alert("Buyed Sucessfull");
+    this.cartService.removeAllCart();
+  }
+  printPDF(){
+    console.log(this.el);
+    let pdf =  new jsPDF('l', 'pt', 'a3');
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf)=> {
+        pdf.save("notaFiscal.pdf");
+      }
+    })
+
   }
 }

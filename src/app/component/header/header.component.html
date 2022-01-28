@@ -1,10 +1,11 @@
 <header>
     <div class="navbar bg-primary shadow-sm fixed-top">
-        <div class="navbar-brand align-item-center d-flex">
-            <i style="font-size: 40px;" class="fas fa-shipping-fast">&nbsp;
-            </i>
+        <a routerLink="/products"> <div class="navbar-brand align-item-center d-flex">
+            <i  style="font-size: 40px;" class="fas fa-shipping-fast">&nbsp;</i>
             <strong style="font-size: 30px;">VegStore</strong>
+            
         </div>
+    </a>
         <div class="form-group align-items-center">
             <div><input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="search products" 
             >

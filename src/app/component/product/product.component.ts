@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ApiServiceService } from 'src/app/service/api-service.service';
 import { CartService } from 'src/app/service/cart.service';
 
@@ -12,6 +12,7 @@ export class ProductComponent implements OnInit {
   public productList : any ;
   public filterCategory : any
   searchKey:string="";
+
   constructor(private api : ApiServiceService, private cartService : CartService) { }
 
   ngOnInit(): void {

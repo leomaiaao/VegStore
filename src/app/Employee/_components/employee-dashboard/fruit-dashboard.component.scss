@@ -1,0 +1,8 @@
+td{
+    border-bottom: 1px solid black;
+    text-align: center;
+    align-items: center;
+}
+tr:nth-child(2n+2){
+    background: hsla(205, 35%, 49%, 0.9);
+}

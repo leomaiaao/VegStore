@@ -44,7 +44,6 @@ export class FruitDashboardComponent implements OnInit {
     this.fruitModelObj.prize = this.formValue.value.prize;
     this.fruitModelObj.cod = this.formValue.value.cod;
     this.fruitModelObj.image = this.formValue.value.image;
-    // this.codValue += Math.random().toString(36).substring(2);
 
 
     this.api.postFruit(this.fruitModelObj).subscribe({
@@ -69,6 +68,7 @@ export class FruitDashboardComponent implements OnInit {
         }
       })
   }
+  
   deleteFruit(row: any) {
     this.api.deleteFruit(row.id)
       .subscribe({

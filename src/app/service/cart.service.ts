@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ApiService } from '../Employee/_services/api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CartService {
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
-  constructor() { }
+  constructor(public apiService: ApiService) { }
   getProducts() {
     return this.productList.asObservable();
   }
@@ -78,8 +79,23 @@ export class CartService {
     this.getTotalPrice();
 
   }
+  
+  removeItem(product:any){
+    let i = this.cartItemList.findIndex((el: any) => el.id === product.id);
+     if (i !== -1){
+     console.log(i, this.cartItemList[i]);
+     console.log(this.cartItemList[i].numbers)
+     console.log("este é o id", this.cartItemList[i].id)
+     this.apiService.updateFruitsValue(this.cartItemList[i].numbers, this.cartItemList[i].id);
+     
+     }
+    this.removeAllCart();
+    localStorage.removeItem('CartItems');
+
+  }
+
   removeAllCart() {
-    this.cartItemList = []
+    this.cartItemList = [];
     this.productList.next(this.cartItemList);
   }
 }
