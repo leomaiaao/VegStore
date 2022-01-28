@@ -41,10 +41,9 @@
                             <td colspan="4"></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
                             <td><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
-                            <td><button *ngFor="let item of products;" (click)="sucessButton()"
-                                    class="btn btn-success">Checkout</button></td>
+                            <td><button *ngFor="let item of products;" (click)="sucessButton()" class="btn btn-success"
+                                    data-bs-toggle="modal" data-bs-target="#Modal">Checkout</button></td>
                             <td><strong>Total do Carrinho : ${{grandTotal}}</strong></td>
-                            <td><button  data-bs-toggle="modal" data-bs-target="#Modal"></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,15 +52,15 @@
     </div>
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document" >
-            <div class="modal-content" style="width: 700px;" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 700px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Seu Comprovante</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body">
                     <table class="table table-responsive" id="conteudo" #conteudo>
                         <thead>
                             <tr>
