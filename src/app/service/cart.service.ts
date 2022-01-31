@@ -56,6 +56,7 @@ export class CartService {
     })
     this.productList.next(this.cartItemList);
   }
+  
   removeOneItem(product: any){
     let i = this.cartItemList.findIndex((el: any) => el.id === product.id);
     if (i !== -1) {
