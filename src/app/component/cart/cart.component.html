@@ -41,7 +41,7 @@
                             <td colspan="4"></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
                             <td><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
-                            <td><button *ngFor="let item of products;" (click)="sucessButton()" class="btn btn-success"
+                            <td><button (click)="sucessButton()"class="btn btn-success"
                                     data-bs-toggle="modal" data-bs-target="#Modal">Checkout</button></td>
                             <td><strong>Total do Carrinho : ${{grandTotal}}</strong></td>
                         </tr>
@@ -89,7 +89,6 @@
                         </tbody>
                     </table>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" (click)="printPDF()">Imprimir</button>
                         <button type="button" id="cancel" class="btn btn-secondary"
                             data-bs-dismiss="modal">Close</button>
                     </div>

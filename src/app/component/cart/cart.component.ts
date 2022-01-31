@@ -61,8 +61,13 @@ export class CartComponent implements OnInit {
    
   sucessButton(){
     alert("Buyed Sucessfull");
+    this.cartService.cartItemList.map((item:any)=>{
+      this.apiService.updateFruitsValue(item.numbers, item.id); 
+    })
+    this.printPDF();
     this.cartService.removeAllCart();
   }
+
   printPDF(){
     console.log(this.el);
     let pdf =  new jsPDF('l', 'pt', 'a3');
@@ -71,6 +76,5 @@ export class CartComponent implements OnInit {
         pdf.save("notaFiscal.pdf");
       }
     })
-
   }
 }
